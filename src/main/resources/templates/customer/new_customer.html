@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th = "http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>New page</title>
+</head>
+<body>
+<div align="center">
+    <h1>Create New Customer</h1>
+    <br>
+    <form action="#" th:action="@{/customer/save}" th:object="${customer}" method="post">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Customer name</td>
+                <td><input type="text" th:field = "*{CName}"></td>
+            </tr>
+            <tr>
+                <td>Customer LastName</td>
+                <td><input type="text" th:field = "*{CLastname}"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

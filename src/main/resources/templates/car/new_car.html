@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th = "http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>New car page</title>
+</head>
+<body>
+<div align="center">
+    <h1>Create New Car</h1>
+    <br>
+    <form action="#" th:action="@{/cars/save}" th:object="${car}" method="post">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Car brand</td>
+                <td><input type="text" th:field ="*{brand}"></td>
+            </tr>
+            <tr>
+                <td>Car model</td>
+                <td><input type="text" th:field ="*{model}"></td>
+            </tr>
+            <tr>
+                <td>Customer id</td>
+                <td><input type="text" th:field ="*{customer.CId}"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

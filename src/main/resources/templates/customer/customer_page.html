@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <h1>Customer List</h1>
+    <a href="/customer/new">Create new customer</a>
+    <br>
+    <a href="/cars/">Go To Car page</a>
+    <br>
+    <a href="/">Go to Main Page</a>
+    <br><br>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Customer name</th>
+            <th>Customer Lastname</th>
+            <th>Customer Cars</th>
+            <th sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer:${customerList}">
+            <td th:text ="${customer.CId}">Customer ID</td>
+            <td th:text ="${customer.CName}">Customer Name</td>
+            <td th:text ="${customer.CLastname}">Customer Lastname</td>
+            <td th:text ="${customer.cars}">Customer cars</td>
+            <td sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">
+                <a th:href="@{'/customer/edit/'+${customer.CId}}">Edit</a>
+                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/customer/delete/'+${customer.CId}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Car page</title>
+</head>
+<body>
+<div align="center">
+    <h1>Car List</h1>
+    <a th:href="@{/cars/new}">Add new car</a>
+    <br>
+    <a th:href="@{/}">Go to Main Page</a>
+    <br>
+    <a th:href="@{/customer/}">Go to Customer Page</a>
+    <br><br>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Car Id</th>
+            <th>Car brand</th>
+            <th>Car model</th>
+            <th>Customer id</th>
+            <th sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Actions</th>
+        </tr>
+        </thead>
+        <tbody th:each="car:${carList}">
+        <td th:text="${car.id}">Car id</td>
+        <td th:text="${car.brand}">Car Brand</td>
+        <td th:text="${car.model}">Car Model</td>
+        <td th:text="${car.customer.CId}">Customer Id</td>
+        <td sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">
+            <a th:href="@{'/cars/edit/'+${car.id}}">Edit</a>
+            <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/cars/delete/'+${car.id}}">Delete</a>
+
+        </td>
+        </tbody>
+    </table>
+
+
+</div>
+</body>
+</html>
